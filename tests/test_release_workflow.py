@@ -24,6 +24,7 @@ def test_release_workflow_checks_tag_commit_is_on_main():
 
 def test_release_workflow_checks_version_and_generates_notes():
     content = WORKFLOW_FILE.read_text()
+    assert 'export TAG_VERSION="${GITHUB_REF_NAME#v}"' in content
     assert 'version/version.py' in content
     assert 'VERSION' in content
     assert 'softprops/action-gh-release@v2' in content
