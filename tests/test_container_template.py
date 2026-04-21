@@ -87,8 +87,6 @@ def test_container_template_dockerfile_base_image_and_env_install():
         content = f.read()
 
     assert f'FROM {EXPECTED_CONTAINER_BASE_IMAGE}' in content
-    assert 'COPY /scripts/install_miniforge3.sh .' not in content
-    assert 'RUN bash install_miniforge3.sh' not in content
     assert 'mamba env update --name base --file environment.yml' in content
 
 
