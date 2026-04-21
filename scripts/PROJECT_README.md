@@ -129,8 +129,8 @@ tar --exclude=".git/*" -cvf container_template_$SHA.tar container_template
 | OS/tool             | Version               | License           | Source
 | ------------------- | --------------------- | ----------------- | -------------
 | ubuntu              | 24.04                 | [Creative Commons CC-BY-SA version 3.0 UK licence](https://ubuntu.com/legal/intellectual-property-policy) | [Ubuntu.com](https://ubuntu.com)
-| mambaforge          | 24.7.1-0              | [BSD-3-Clause](https://github.com/conda-forge/miniforge/blob/main/LICENSE) | [MiniForge](https://github.com/conda-forge/miniforge)
-| python              | 3.12.5                | [PSF](https://docs.python.org/3.10/license.html) | [Python.org](https://www.python.org)
+| Miniforge3          | 26.1.1-3              | [BSD-3-Clause](https://github.com/conda-forge/miniforge/blob/main/LICENSE) | [MiniForge3](https://github.com/conda-forge/miniforge)
+| python              | 3.13.12               | [PSF](https://docs.python.org/3.10/license.html) | [Python.org](https://www.python.org)
 
 ## Building/rebuilding containers
 
