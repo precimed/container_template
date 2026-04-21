@@ -19,6 +19,7 @@ import tempfile
 # This may be useful for testing on a local machine, but should
 # be revised for the particular usecase.
 cwd = os.getcwd()
+EXPECTED_CONTAINER_BASE_IMAGE = 'quay.io/condaforge/miniforge3:26.1.1-3'
 try:
     pth = os.path.join('containers', 'container_template.sif')
     try:
@@ -75,6 +76,18 @@ def test_container_template_python_script():
     call = f'''{PREFIX_MOUNT} {cwd}/tests/extras/hello.py'''
     out = subprocess.run(call.split(' '), capture_output=True)
     assert out.returncode == 0
+
+
+def test_container_template_dockerfile_base_image_and_env_install():
+    """test that Dockerfile uses miniforge base image and environment.yml"""
+    dockerfile = os.path.join(
+        cwd, 'docker', 'dockerfiles', 'container_template', 'Dockerfile'
+    )
+    with open(dockerfile, 'r', encoding='utf-8') as f:
+        content = f.read()
+
+    assert f'FROM {EXPECTED_CONTAINER_BASE_IMAGE}' in content
+    assert 'mamba env update --name base --file environment.yml' in content
 
 
 def test_container_template_python_script_from_tempdir():
