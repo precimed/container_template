@@ -5,8 +5,8 @@ WORKFLOW_FILE = Path('.github/workflows/release.yml')
 
 
 def test_release_workflow_exists_and_triggers_on_version_tags():
-    content = WORKFLOW_FILE.read_text()
     assert WORKFLOW_FILE.exists()
+    content = WORKFLOW_FILE.read_text()
     assert 'on:' in content
     assert 'tags:' in content
     assert '- "v*.*.*"' in content
