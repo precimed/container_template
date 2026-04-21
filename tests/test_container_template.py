@@ -77,6 +77,20 @@ def test_container_template_python_script():
     assert out.returncode == 0
 
 
+def test_container_template_dockerfile_base_image_and_env_install():
+    """test that Dockerfile uses miniforge base image and environment.yml"""
+    dockerfile = os.path.join(
+        cwd, 'docker', 'dockerfiles', 'container_template', 'Dockerfile'
+    )
+    with open(dockerfile, 'r', encoding='utf-8') as f:
+        content = f.read()
+
+    assert 'FROM quay.io/condaforge/miniforge3:26.1.1-3' in content
+    assert 'COPY /scripts/install_miniforge3.sh .' not in content
+    assert 'RUN bash install_miniforge3.sh' not in content
+    assert 'mamba env update --name base --file environment.yml' in content
+
+
 def test_container_template_python_script_from_tempdir():
     '''test that the tempdir is working'''
     with tempfile.TemporaryDirectory() as d:
